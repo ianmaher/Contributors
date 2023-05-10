@@ -7,13 +7,14 @@ public  static class GetContributorListMapper
     public static GetContributorListResponse Map(this IList<GitHubContributor> gh)
     {
         var contributorListResponse = new GetContributorListResponse();
-
-        foreach(GitHubContributor c in gh)
+        if ( gh != null )
         {
-            var contributor = c.Map();
-            contributorListResponse.Contributors.Add(contributor);
+            foreach(GitHubContributor c in gh)
+            {
+                var contributor = c.Map();
+                contributorListResponse.Contributors.Add(contributor);
+            }
         }
-        
         return contributorListResponse;
     }
 

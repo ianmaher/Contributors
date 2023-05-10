@@ -14,7 +14,7 @@ namespace GitHubProxy.Application.Features.GetContributorList
         public async Task<GetContributorListResponse> Handle(GetContributorListQuery query, CancellationToken cancellationToken)
         {
             var contributorList = await _gitHub.GetContributors(query.Owner, query.Repo);
-            return contributorList;
+            return contributorList.Map();
         }
     }
 }

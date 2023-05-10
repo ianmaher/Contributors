@@ -1,11 +1,10 @@
-﻿using System;
-using GitHubProxy.Application.Features.GetContributorList;
+﻿using GitHubProxy.Models;
 
 namespace GitHubProxy.Application.Services.Interfaces;
 
 public interface IGitHubService
 {
-    public Task<GetContributorListResponse> GetContributors(string owner, string repo);
+    public Task<IList<GitHubContributor>> GetContributors(string owner, string repo);
 }
 
 

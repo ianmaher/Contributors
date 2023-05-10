@@ -13,8 +13,8 @@ public class ContributorsList
     [Test]
     public async Task ContributorList_Given_Existing_Repro_Should_Return_Ok()
     {
-        GetContributorListResponse resp = new GetContributorListResponse();
-        resp.Contributors.Add(new Contributor() { Name = "Author" });
+        IList<GitHubContributor> resp = new List<GitHubContributor>();
+        resp.Add(new GitHubContributor() {  login = "Author" });
 
         var gitHib = new Mock<IGitHubService>();
         gitHib.Setup(x => x.GetContributors("Test1", "Repo1"))
@@ -32,8 +32,8 @@ public class ContributorsList
     [Test]
     public async Task ContributorList_Given_NonExisting_Repro_Should_Return_Null_Object()
     {
-        GetContributorListResponse resp = new GetContributorListResponse();
-        resp.Contributors.Add(new Contributor() { Name = "Author" });
+        IList<GitHubContributor> resp = new List<GitHubContributor>();
+        resp.Add(new GitHubContributor() {  login = "Author" });
 
         var gitHib = new Mock<IGitHubService>();
         gitHib.Setup(x => x.GetContributors("Test1", "Repo1"))
@@ -45,6 +45,6 @@ public class ContributorsList
 
         GetContributorListResponse response = await handler.Handle(query, cancellationToken);
 
-        Assert.That(response, Is.EqualTo(null));
+        Assert.That(response.Contributors.Count, Is.EqualTo(0));
     }
 }
