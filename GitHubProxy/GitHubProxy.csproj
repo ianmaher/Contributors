@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+    <PackageReference Include="MediatR" Version="12.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Application\" />
+    <None Remove="Application\Features\" />
+    <None Remove="MediatR" />
+    <None Remove="Application\Services\" />
+    <None Remove="Application\Services\Interfaces\" />
+    <None Remove="Models\" />
+    <None Remove="Application\Constants\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Application\" />
+    <Folder Include="Application\Features\" />
+    <Folder Include="Application\Services\" />
+    <Folder Include="Application\Services\Interfaces\" />
+    <Folder Include="Models\" />
+    <Folder Include="Application\Constants\" />
+  </ItemGroup>
+</Project>
