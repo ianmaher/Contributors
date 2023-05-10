@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Text.Json;
-using GitHubProxy.Application.Features.GetContributorList;
 using GitHubProxy.Application.Services.Interfaces;
 using GitHubProxy.Application.Constants;
 using GitHubProxy.Models;
@@ -18,7 +17,7 @@ public class GitHubService : IGitHubService
         _httpClient.DefaultRequestHeaders.Add("User-Agent", @"Mozilla/5.0 (Windows NT 10; Win64; x64; rv:60.0) Gecko/20100101 Firefox/60.0");
     }
 
-    public async Task<GetContributorListResponse> GetContributors(string owner, string repo)
+    public async Task<IList<GitHubContributor>> GetContributors(string owner, string repo)
     {
         // Comment:
         // Github api returns uptp 30 contributors by default.
@@ -42,10 +41,7 @@ public class GitHubService : IGitHubService
         {
             throw new ApplicationException($"Error deserializing result from GitHub.");
         }
-
-        GetContributorListResponse response = result.Map();
-            
-        return response;
+    return result;
     }
 
 }
